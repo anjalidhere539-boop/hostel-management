@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard | Girls Hostel</title>
+    <link rel="stylesheet" href="admindashboard.css">
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <h2>🏠 Hostel Admin</h2>
+    <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="newlogin1.html">Daily Entries</a></li>
+        <li><a href="report.html">Reports</a></li>
+        <li><a href="index.html" onclick="logout()">Logout</a></li>
+    </ul>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+
+    <header>
+        <h1>Admin Dashboard</h1>
+        <p>Welcome, Warden 👩‍🏫</p>
+    </header>
+
+    <!-- Entry Form -->
+    <section class="form-section">
+        <h2>Add Outgoing Entry</h2>
+
+        <form id="entryForm">
+            <input type="text" id="Name" placeholder="Student Name" required>
+            <input type="text" id="room" placeholder="Room No" required>
+            <input type="text" id="contact" placeholder="Contact No" required>
+            <input type="text" id="destination" placeholder="Destination" required>
+            <input type="time" id="outTime" required>
+            <button type="submit">Add Entry</button>
+        </form>
+    </section>
+
+    <!-- Table -->
+    <section class="table-section">
+        <h2>Today's Records</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Room</th>
+                    <th>Contact</th>
+                    <th>Destination</th>
+                    <th>Out Time</th>
+                    <th>In Time</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="recordTable"></tbody>
+        </table>
+    </section>
+
+</div>
+
+<script src="admindashboard.js"></script>
+</body>
+</html>

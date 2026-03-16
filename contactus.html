@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact Us | Girls Hostel</title>
+
+<style>
+    body{
+        margin:0;
+        font-family:Arial, Helvetica, sans-serif;
+        background:#f4f6f8;
+        color:#333;
+    }
+
+    header{
+        background:#e73772;
+        color:#fff;
+        text-align:center;
+        padding:40px 20px;
+    }
+
+    header h1{
+        margin-bottom:10px;
+        font-size:32px;
+    }
+
+    .contact-container{
+        max-width:1100px;
+        margin:40px auto;
+        padding:20px;
+        display:flex;
+        flex-wrap:wrap;
+        gap:30px;
+    }
+
+    .contact-info, .contact-form{
+        flex:1;
+        min-width:300px;
+        background:#fff;
+        padding:25px;
+        border-radius:12px;
+        box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .contact-info h2,
+    .contact-form h2{
+        color:#ff4081;
+        margin-top:0;
+    }
+
+    .contact-info p{
+        line-height:1.6;
+        font-size:16px;
+    }
+
+    .info-box{
+        margin:15px 0;
+        font-size:16px;
+    }
+
+    .info-box strong{
+        color:#ff4081;
+    }
+
+    .contact-image img{
+        width:100%;
+        border-radius:10px;
+        margin-top:15px;
+    }
+
+    form input, form textarea{
+        width:100%;
+        padding:10px;
+        margin:10px 0;
+        border-radius:6px;
+        border:1px solid #ccc;
+        font-size:15px;
+    }
+
+    form textarea{
+        resize:none;
+        height:120px;
+    }
+
+    form button{
+        background:#ff4081;
+        color:#fff;
+        border:none;
+        padding:12px;
+        width:100%;
+        border-radius:6px;
+        font-size:16px;
+        cursor:pointer;
+    }
+
+    form button:hover{
+        background:#d81b60;
+    }
+
+    footer{
+        background:#080808;
+        color:#fff;
+        text-align:center;
+        padding:15px;
+        margin-top:40px;
+    }
+
+    @media(max-width:768px){
+        header h1{
+            font-size:26px;
+        }
+    }
+    footer{
+    background:#111;
+    color:#fff;
+    padding:60px 10%;
+}
+
+.footer-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+footer h3{
+    margin-bottom:15px;
+    color:#ff4081;
+}
+
+footer ul{
+    list-style:none;
+}
+
+footer ul li{
+    margin-bottom:10px;
+}
+
+footer ul li a{
+    text-decoration:none;
+    color:#ccc;
+    transition:0.3s;
+}
+
+footer ul li a:hover{
+    color:#ff4081;
+}
+
+.footer-bottom{
+    text-align:center;
+    margin-top:40px;
+    border-top:1px solid #444;
+    padding-top:20px;
+    color:#aaa;
+}
+nav{
+    position:fixed;
+    width:100%;
+    background:rgba(0,0,0,0.8);
+    padding:15px 0;
+    z-index:1000;
+}
+
+nav .container{
+    width:90%;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+nav h2{
+    color:#ff4081;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+}
+
+nav ul li{
+    margin-left:25px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#ff4081;
+}
+
+</style>
+</head>
+
+<body>
+<nav>
+    <div class="container">
+        <h2>🏠 Girls Hostel</h2>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+            <li><a href="wardenlogin.html">Login</a></li>
+        </ul>
+    </div>
+</nav>
+<header>
+    <h1>Contact Us</h1>
+    <p>We’re Here to Help You – Feel Free to Reach Out</p>
+</header>
+
+<section class="contact-container">
+
+    <div class="contact-info">
+        <h2>Get in Touch</h2>
+        <p>
+            If you have any questions regarding hostel admission, facilities,
+            rules, or safety, please contact us. Our warden and staff are always
+            ready to assist you.
+        </p>
+
+        <div class="info-box">
+            <strong>📍 Address:</strong><br>
+           Rashtramata Jijau Girls Hostel, Deogiri College Campus,<br>
+            Chh.Sambhajinagar – 1005
+        </div>
+
+        <div class="info-box">
+            <strong>📞 Phone:</strong><br>
+            +91 98765 43210
+        </div>
+
+        <div class="info-box">
+            <strong>📧 Email:</strong><br>
+            girlshostel@gmail.com
+        </div>
+
+        <div class="info-box">
+            <strong>⏰ Office Hours:</strong><br>
+            9:00 AM – 7:00 PM
+        </div>
+
+        <div class="contact-image">
+            <img src="Screenshot 2026-02-10 111318.png" alt="Hostel Office">
+        </div>
+    </div>
+
+    <div class="contact-form">
+        <h2>Send Us a Message</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <input type="text" placeholder="Contact Number" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+</section>
+<footer>
+    <div class="footer-container">
+        <div>
+            <h3>About Hostel</h3>
+            <p>
+                Girls Hostel Management System helps maintain proper records of daily attendance,
+                late entries, and secure student monitoring.
+            </p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="contactus.html">Contact Us</a></li>
+                <li><a href="wardenlogin.html">Login</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Contact Info</h3>
+            <ul>
+                <li>Email: RashtramataJijauhostel@email.com</li>
+                <li>Phone: +91 9876543210</li>
+                <li>Address: Chh.Sambhajinagar, Maharashtra</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Girls Hostel Daily Attendance System | All Rights Reserved
+    </div>
+</footer>
+
+
+
+</body>
+</html>

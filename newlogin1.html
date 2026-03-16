@@ -1,0 +1,265 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Girls Hostel Outing Attendance</title>
+
+<style>
+body{font-family:Arial;background:#f4f6f8;margin:0}
+header{background:#e91e63;color:#fff;padding:15px;text-align:center;font-size:22px}
+.container{max-width:1200px;margin:20px auto;background:#fff;padding:20px;border-radius:8px}
+.form-group{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+input{padding:10px}
+button{margin-top:10px;padding:10px 20px;background:#e91e63;color:#fff;border:none;border-radius:5px;cursor:pointer}
+table{width:100%;border-collapse:collapse;margin-top:20px;font-size:13px}
+th,td{border:1px solid #ccc;padding:8px;text-align:center}
+th{background:#eee}
+.ok{color:green;font-weight:bold}
+.late{color:red;font-weight:bold}
+.action-btn{padding:5px 10px;font-size:12px}
+footer{text-align:center;margin-top:15px;font-size:13px}
+
+nav{
+position:fixed;
+width:100%;
+background:rgba(0,0,0,0.8);
+padding:15px 0;
+z-index:1000;
+}
+
+nav .container{
+width:90%;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+nav h2{color:#ff4081;}
+
+nav ul{list-style:none;display:flex;}
+
+nav ul li{margin-left:25px;}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+font-weight:500;
+transition:0.3s;
+}
+
+nav ul li a:hover{color:#ff4081;}
+</style>
+</head>
+
+<body>
+
+<header>👧 Girls Hostel Outgoing Attendance System</header>
+
+<div class="container">
+
+<h3>Add Outing Entry (Going Time Only)</h3>
+
+<div class="form-group">
+
+<input id="name" placeholder="Student Name">
+<input id="room" placeholder="Room No">
+<input id="contact" placeholder="Student Contact">
+
+<input id="destination" placeholder="Destination">
+<input id="parentName" placeholder="Parent Name">
+<input id="parentContact" placeholder="Parent Contact">
+
+<input type="time" id="goingTime">
+
+</div>
+
+<button onclick="addEntry()">Save Going Entry</button>
+
+<button onclick="exportToExcel()">Export Data to Excel</button>
+
+<br>
+
+<button><a href="index.html" style="color:white;text-decoration:none;">Log Out</a></button>
+
+<p>⏰ Entry closes at <b>7:00 PM</b></p>
+
+<h3>Attendance Records</h3>
+
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Name</th>
+<th>Room</th>
+<th>Contact</th>
+<th>Destination</th>
+<th>Parent</th>
+<th>Parent Contact</th>
+<th>Going</th>
+<th>Coming</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="tableBody"></tbody>
+
+</table>
+
+</div>
+
+<footer>© 2026 Girls Hostel Management</footer>
+
+<script>
+
+const ENTRY_CLOSE_TIME = "19:00";
+
+function get(id){
+return document.getElementById(id).value;
+}
+
+function addEntry(){
+
+if(!get("name") || !get("room") || !get("contact") || !get("goingTime")){
+alert("Please fill required fields");
+return;
+}
+
+const record = {
+id: Date.now(),
+date: new Date().toLocaleDateString(),
+name: get("name"),
+room: get("room"),
+contact: get("contact"),
+destination: get("destination"),
+parentName: get("parentName"),
+parentContact: get("parentContact"),
+goingTime: get("goingTime"),
+comingTime: "",
+status: "Out"
+};
+
+const data = JSON.parse(localStorage.getItem("outing")) || [];
+data.push(record);
+
+localStorage.setItem("outing", JSON.stringify(data));
+
+document.querySelectorAll("input").forEach(i => i.value = "");
+
+loadData();
+}
+
+function addComingTime(id){
+
+const time = prompt("Enter Coming Time (HH:MM)");
+
+if(!time) return;
+
+const data = JSON.parse(localStorage.getItem("outing")) || [];
+
+data.forEach(r=>{
+if(r.id === id){
+r.comingTime = time;
+r.status = time > ENTRY_CLOSE_TIME ? "Late Entry" : "OK";
+}
+});
+
+localStorage.setItem("outing", JSON.stringify(data));
+
+loadData();
+}
+
+function loadData(){
+
+const data = JSON.parse(localStorage.getItem("outing")) || [];
+
+const tbody = document.getElementById("tableBody");
+
+tbody.innerHTML = "";
+
+data.forEach(r=>{
+
+tbody.innerHTML += `
+<tr>
+<td>${r.date}</td>
+<td>${r.name}</td>
+<td>${r.room}</td>
+<td>${r.contact}</td>
+<td>${r.destination}</td>
+<td>${r.parentName}</td>
+<td>${r.parentContact}</td>
+<td>${r.goingTime}</td>
+<td>${r.comingTime || "-"}</td>
+<td class="${r.status==="Late Entry"?"late":"ok"}">${r.status}</td>
+<td>
+${r.comingTime ? "✔" : `<button class="action-btn" onclick="addComingTime(${r.id})">Add Coming</button>`}
+</td>
+</tr>
+`;
+
+});
+
+}
+
+function exportToExcel(){
+
+const data = JSON.parse(localStorage.getItem("outing")) || [];
+
+let table = `
+<table border="1">
+<tr>
+<th>Date</th>
+<th>Name</th>
+<th>Room</th>
+<th>Contact</th>
+<th>Destination</th>
+<th>Parent</th>
+<th>Parent Contact</th>
+<th>Going Time</th>
+<th>Coming Time</th>
+<th>Status</th>
+</tr>
+`;
+
+data.forEach(r=>{
+table += `
+<tr>
+<td>${r.date}</td>
+<td>${r.name}</td>
+<td>${r.room}</td>
+<td>${r.contact}</td>
+<td>${r.destination}</td>
+<td>${r.parentName}</td>
+<td>${r.parentContact}</td>
+<td>${r.goingTime}</td>
+<td>${r.comingTime || "-"}</td>
+<td>${r.status}</td>
+</tr>
+`;
+});
+
+table += `</table>`;
+
+const blob = new Blob([table], { type: "application/vnd.ms-excel" });
+
+const url = window.URL.createObjectURL(blob);
+
+const a = document.createElement("a");
+
+a.href = url;
+
+a.download = "hostel_outing_attendance.xls";
+
+a.click();
+
+}
+
+loadData();
+
+</script>
+
+</body>
+</html>
+```
